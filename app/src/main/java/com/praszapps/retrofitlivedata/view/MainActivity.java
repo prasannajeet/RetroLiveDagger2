@@ -21,19 +21,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         NewsViewModel mViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
         OrganizationsViewModel nViewModel = ViewModelProviders.of(this).get(OrganizationsViewModel.class);
-
 
         mViewModel.getResponse().observe(this, new Observer<NewsResponse>() {
             @Override
             public void onChanged(@Nullable NewsResponse newsResponse) {
                 if (newsResponse != null) {
-
+                    Log.d("YOYOYO", newsResponse.toString());
                 } else {
                     Log.d("YOYOYO", "News view model is null");
                 }
-
             }
         });
 
