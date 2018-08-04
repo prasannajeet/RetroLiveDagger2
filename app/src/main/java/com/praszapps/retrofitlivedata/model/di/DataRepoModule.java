@@ -3,7 +3,7 @@ package com.praszapps.retrofitlivedata.model.di;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.praszapps.retrofitlivedata.model.retrofit.NewAPIRequest;
+import com.praszapps.retrofitlivedata.model.retrofit.HeadlinesService;
 import com.praszapps.retrofitlivedata.model.retrofit.OrganizationsService;
 import com.praszapps.retrofitlivedata.util.AppConstants;
 
@@ -63,8 +63,8 @@ public class DataRepoModule {
     }
 
     @Provides
-    public NewAPIRequest provideNewsService(@BaseUrlType("news") Retrofit retrofit) {
-        return retrofit.create(NewAPIRequest.class);
+    public HeadlinesService provideNewsService(@BaseUrlType("news") Retrofit retrofit) {
+        return retrofit.create(HeadlinesService.class);
     }
 
     /*@Provides
@@ -73,7 +73,7 @@ public class DataRepoModule {
     }
 
     @Provides
-    public Call<NewsResponse> provideNewsCall(NewAPIRequest newsService, String country, String apikey) {
+    public Call<NewsResponse> provideNewsCall(HeadlinesService newsService, String country, String apikey) {
         return newsService.getHeadlines(country, apikey);
     }*/
 

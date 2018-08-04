@@ -1,4 +1,4 @@
-package com.praszapps.retrofitlivedata.model.data.github;
+package com.praszapps.retrofitlivedata.model.pojo.github;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

@@ -1,6 +1,6 @@
 package com.praszapps.retrofitlivedata.model.retrofit;
 
-import com.praszapps.retrofitlivedata.model.data.github.Organization;
+import com.praszapps.retrofitlivedata.model.pojo.github.Organization;
 
 import java.util.List;
 

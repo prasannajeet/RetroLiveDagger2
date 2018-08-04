@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.praszapps.retrofitlivedata.R;
-import com.praszapps.retrofitlivedata.model.data.github.Organization;
-import com.praszapps.retrofitlivedata.model.data.news.NewsResponse;
+import com.praszapps.retrofitlivedata.model.pojo.github.Organization;
+import com.praszapps.retrofitlivedata.model.pojo.news.NewsResponse;
 import com.praszapps.retrofitlivedata.viewmodel.NewsViewModel;
 import com.praszapps.retrofitlivedata.viewmodel.OrganizationsViewModel;
 

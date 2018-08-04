@@ -1,4 +1,4 @@
-package com.praszapps.retrofitlivedata.model.data.news;
+package com.praszapps.retrofitlivedata.model.pojo.news;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

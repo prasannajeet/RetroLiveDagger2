@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.praszapps.retrofitlivedata.model.DataRepository;
-import com.praszapps.retrofitlivedata.model.data.news.NewsResponse;
+import com.praszapps.retrofitlivedata.model.pojo.news.NewsResponse;
 
 public class NewsViewModel extends AndroidViewModel {
 
@@ -14,7 +14,7 @@ public class NewsViewModel extends AndroidViewModel {
 
     public NewsViewModel(@NonNull Application application) {
         super(application);
-        response = DataRepository.INSTANCE.getHeadlinesData("in", "b5a76be430304e1fbe4b1db2004b2ad2");
+        response = DataRepository.INSTANCE.getHeadlines("in", "b5a76be430304e1fbe4b1db2004b2ad2");
     }
 
     public LiveData<NewsResponse> getResponse() {

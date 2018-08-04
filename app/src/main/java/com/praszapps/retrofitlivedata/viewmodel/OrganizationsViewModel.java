@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.praszapps.retrofitlivedata.model.DataRepository;
-import com.praszapps.retrofitlivedata.model.data.github.Organization;
+import com.praszapps.retrofitlivedata.model.pojo.github.Organization;
 
 import java.util.List;
 
@@ -18,6 +18,6 @@ public class OrganizationsViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<List<Organization>> getOrganizationListData() {
-        return DataRepository.INSTANCE.getOrganizationsListData();
+        return DataRepository.INSTANCE.getOrganisation(44);
     }
 }
