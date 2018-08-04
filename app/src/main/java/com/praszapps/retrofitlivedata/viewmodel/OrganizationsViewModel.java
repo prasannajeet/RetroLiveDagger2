@@ -13,15 +13,8 @@ import java.util.List;
 
 public class OrganizationsViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<OrganizationsViewModel>> mViewModel;
-    private String error;
-
     public OrganizationsViewModel(@NonNull Application application) {
         super(application);
-    }
-
-    public String getErrorMessage() {
-        return error;
     }
 
     public MutableLiveData<List<Organization>> getOrganizationListData() {

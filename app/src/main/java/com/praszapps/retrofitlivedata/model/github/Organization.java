@@ -1,5 +1,7 @@
 package com.praszapps.retrofitlivedata.model.github;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Organization {
     private String login;
     private int id;
@@ -43,5 +45,10 @@ public class Organization {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("id", id).append("login", login).append("avatarUrl", avatarUrl).append("description", description).toString();
     }
 }
