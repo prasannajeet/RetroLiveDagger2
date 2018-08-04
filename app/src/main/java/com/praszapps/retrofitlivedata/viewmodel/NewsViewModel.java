@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.praszapps.retrofitlivedata.model.DataRepository;
-import com.praszapps.retrofitlivedata.model.news.NewsResponse;
+import com.praszapps.retrofitlivedata.model.data.news.NewsResponse;
 
 public class NewsViewModel extends AndroidViewModel {
 

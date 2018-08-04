@@ -1,6 +1,6 @@
 package com.praszapps.retrofitlivedata.model.retrofit;
 
-import com.praszapps.retrofitlivedata.model.news.NewsResponse;
+import com.praszapps.retrofitlivedata.model.data.news.NewsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

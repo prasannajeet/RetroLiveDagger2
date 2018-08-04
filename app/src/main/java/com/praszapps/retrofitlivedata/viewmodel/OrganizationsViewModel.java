@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.praszapps.retrofitlivedata.model.DataRepository;
-import com.praszapps.retrofitlivedata.model.github.Organization;
+import com.praszapps.retrofitlivedata.model.data.github.Organization;
 
 import java.util.List;
 

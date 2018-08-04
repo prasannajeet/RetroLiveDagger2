@@ -6,10 +6,11 @@ import android.arch.lifecycle.MutableLiveData;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.praszapps.retrofitlivedata.model.github.Organization;
-import com.praszapps.retrofitlivedata.model.news.NewsResponse;
+import com.praszapps.retrofitlivedata.model.data.github.Organization;
+import com.praszapps.retrofitlivedata.model.data.news.NewsResponse;
 import com.praszapps.retrofitlivedata.model.retrofit.NewAPIRequest;
 import com.praszapps.retrofitlivedata.model.retrofit.OrganizationsService;
+import com.praszapps.retrofitlivedata.util.AppConstants;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -38,13 +39,15 @@ public enum DataRepository {
                 .build();
 
         NewAPIRequest request = new Retrofit.Builder()
-                .baseUrl("https://newsapi.org/")
+                .baseUrl(AppConstants.INSTANCE.getNewsBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
                 .create(NewAPIRequest.class);
 
-        request.getHeadlines(country, apiKey).enqueue(new Callback<NewsResponse>() {
+        Call<NewsResponse> responseCall = request.getHeadlines(country, apiKey);
+
+        responseCall.enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 if(response.isSuccessful()) {
