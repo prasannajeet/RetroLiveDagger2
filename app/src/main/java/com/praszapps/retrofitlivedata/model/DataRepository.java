@@ -3,47 +3,35 @@ package com.praszapps.retrofitlivedata.model;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.praszapps.retrofitlivedata.model.data.github.Organization;
 import com.praszapps.retrofitlivedata.model.data.news.NewsResponse;
+import com.praszapps.retrofitlivedata.model.di.DaggerAppComponent;
+import com.praszapps.retrofitlivedata.model.di.DataRepoModule;
 import com.praszapps.retrofitlivedata.model.retrofit.NewAPIRequest;
 import com.praszapps.retrofitlivedata.model.retrofit.OrganizationsService;
-import com.praszapps.retrofitlivedata.util.AppConstants;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public enum DataRepository {
 
     INSTANCE;
 
+    @Inject
+    NewAPIRequest request;
+    @Inject
+    OrganizationsService service;
+
     public LiveData<NewsResponse> getHeadlinesData(String country, String apiKey) {
+
+        DaggerAppComponent.builder().dataRepoModule(new DataRepoModule()).build().inject(this);
+
         final MutableLiveData<NewsResponse> data = new MutableLiveData<>();
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(2, TimeUnit.MINUTES)
-                .readTimeout(2, TimeUnit.MINUTES)
-                .writeTimeout(2, TimeUnit.MINUTES)
-                .addInterceptor(new HttpLoggingInterceptor())
-                .retryOnConnectionFailure(true)
-                .build();
-
-        NewAPIRequest request = new Retrofit.Builder()
-                .baseUrl(AppConstants.INSTANCE.getNewsBaseUrl())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-                .create(NewAPIRequest.class);
 
         Call<NewsResponse> responseCall = request.getHeadlines(country, apiKey);
 
@@ -68,22 +56,6 @@ public enum DataRepository {
     public MutableLiveData<List<Organization>> getOrganizationsListData() {
         final MutableLiveData<List<Organization>> organizationList = new MutableLiveData<>();
 
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                                .connectTimeout(2, TimeUnit.MINUTES)
-                                .readTimeout(2, TimeUnit.MINUTES)
-                                .writeTimeout(2, TimeUnit.MINUTES)
-                                .retryOnConnectionFailure(true)
-                                .build();
-
-        OrganizationsService service = new Retrofit.Builder()
-                                        .baseUrl("https://api.github.com")
-                                        .addConverterFactory(GsonConverterFactory.create(gson))
-                                        .client(client)
-                                        .build()
-                                        .create(OrganizationsService.class);
-
         Call<List<Organization>> organizationListCall = service.getOrganizations(44);
 
         organizationListCall.enqueue(new Callback<List<Organization>>() {
@@ -99,7 +71,7 @@ public enum DataRepository {
 
             @Override
             public void onFailure(Call<List<Organization>> call, Throwable t) {
-
+                organizationList.setValue(null);
             }
         });
         return organizationList;
