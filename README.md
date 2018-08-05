@@ -1,4 +1,4 @@
-## Retrofit + LiveData + Dagger2 in a MVVM + Clean Architecture
+# Retrofit + LiveData + Dagger2 in a MVVM + Clean Architecture
 This project shows how you can create an Android app using Retrofit, Android architecture component Livedata, Dagger2 to write code using a Model-View-ViewModel pattern implementing Clean Architecture
 
 ## Motivation
