@@ -14,9 +14,6 @@ The motivation behind the project was the lack of a concrete example of using Re
 3. Android Architecture Component - LiveData
 4. Gson
 
-## Features
-What makes your project stand out?
-
 ## Contribute
 
 Feel free to fork the project and send in your pull requests. The pull requests should only pertain to either Unit Tests or improving the MVVM and Clean Architecture in the code. Any PRs for UI changes will not be merged, sorry.
